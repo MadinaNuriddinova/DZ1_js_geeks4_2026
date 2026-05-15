@@ -13,3 +13,43 @@ phoneBtn.onclick = () => {
         phoneResult.innerHTML = `Phone is invalid`
     }
 }
+
+
+
+
+
+
+// 5 урок
+
+// const somInput = document.querySelector(`#som`)
+// const usdInput = document.querySelector(`#usd`)
+
+// somInput.addEventListener(`input`, () => {
+//     const request = new XMLHttpRequest;  // создание запроса
+//     request.open(`GET`, `../`)
+//     request.setRequestHeader(`Content-Type`, `application/json`);
+//     request.send()
+
+//     request.onload = () => {
+//         const data = JSON.parse(request.response)
+//         usdInput.value = (data.usd*somInput.value).toFixed(2)
+//     }
+// })
+
+
+const converter = (element, otherElement) => {
+    element.addEventListener(`input`, () => {
+    const request = new XMLHttpRequest;  // создание запроса
+    request.open(`GET`, `../`)
+    request.setRequestHeader(`Content-Type`, `application/json`);
+    request.send()
+
+    request.onload = () => {
+        const data = JSON.parse(request.response)
+        otherElement.value = (data.usd*element.value).toFixed(2)
+    }
+    })
+}
+
+converter(somInput, usdInput);
+converter(usdInput, somInput);
